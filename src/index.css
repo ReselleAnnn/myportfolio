@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: 'Inter', Montserrat, sans-serif;
+  --font-sub: 'Noto Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --color-background: #0a0a0f;
+  --color-foreground: #f4f4f5;
+  --color-muted: #71717a;
+  --color-muted-foreground: #a1a1aa;
+  --color-card: #18181b;
+  --color-card-foreground: #f4f4f5;
+  --color-border: #27272a;
+  --color-primary: #22d3ee;
+  --color-primary-foreground: #0a0a0f;
+  --color-secondary: #8b5cf6;
+  --color-secondary-foreground: #f4f4f5;
+  --color-accent: #10b981;
+  --color-accent-foreground: #0a0a0f;
+  
+  --color-light-background: #fafafa;
+  --color-light-foreground: #18181b;
+  --color-light-muted: #a1a1aa;
+  --color-light-muted-foreground: #71717a;
+  --color-light-card: #ffffff;
+  --color-light-card-foreground: #18181b;
+  --color-light-border: #e4e4e7;
+}
+
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --card: var(--color-card);
+  --card-foreground: var(--color-card-foreground);
+  --border: var(--color-border);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-primary-foreground);
+  --secondary: var(--color-secondary);
+  --secondary-foreground: var(--color-secondary-foreground);
+  --accent: var(--color-accent);
+  --accent-foreground: var(--color-accent-foreground);
+}
+
+.light {
+  --background: var(--color-light-background);
+  --foreground: var(--color-light-foreground);
+  --muted: var(--color-light-muted);
+  --muted-foreground: var(--color-light-muted-foreground);
+  --card: var(--color-light-card);
+  --card-foreground: var(--color-light-card-foreground);
+  --border: var(--color-light-border);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.font-sub {
+  font-family: 'Noto Sans', sans-serif;
+}
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Animation Classes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Staggered Animation Delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle Glow Effect */
+.glow-sm {
+  box-shadow: 0 0 20px -5px var(--primary);
+}
+
+.glow-md {
+  box-shadow: 0 0 40px -10px var(--primary);
+}
