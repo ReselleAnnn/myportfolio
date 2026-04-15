@@ -29,21 +29,47 @@ export function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
-          <div className="text-center md:text-left">
-            <a
-              href="#hero"
-              onClick={(e) => {
-                e.preventDefault()
-                handleNavClick('#hero')
-              }}
-              className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+         <div className="flex flex-col items-center md:items-start">
+          {/* Name */}
+          <a
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault()
+              handleNavClick('#hero')
+            }}
+            className="text-xl font-bold text-foreground hover:text-primary transition-colors duration-300"
+          >
+            Reselle Dugayo
+          </a>
+
+          {/* Roles with Forced Hover Colors */}
+          <div className="text-xs sm:text-sm text-muted-foreground mt-2 mb-6 font-medium flex flex-wrap justify-center md:justify-start items-center gap-x-2 gap-y-1 text-center md:text-left max-w-lg">
+            <a 
+              href="#projects" 
+              className="transition-colors duration-300 hover:text-primary cursor-pointer whitespace-nowrap"
             >
-              Reselle Dugayo
+              Web Developer & UI/UX Designer
             </a>
-            <p className="text-sm text-muted-foreground mt-2">
-              Web Developer & Digital Creator
-            </p>
+            
+            <span className="hidden sm:inline text-border">|</span>
+            
+            <a 
+              href="#experience" 
+              className="transition-colors duration-300 hover:text-secondary cursor-pointer whitespace-nowrap"
+            >
+              Workflow System Automation
+            </a>
+            
+            <span className="hidden sm:inline text-border">|</span>
+            
+            <a 
+              href="#about" 
+              className="transition-colors duration-300 hover:text-accent cursor-pointer whitespace-nowrap"
+            >
+              AI & Digital Content Creator
+            </a>
           </div>
+        </div>
 
           {/* Navigation */}
           <nav className="flex flex-wrap items-center justify-center gap-6">
