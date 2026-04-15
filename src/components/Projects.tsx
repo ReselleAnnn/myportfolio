@@ -126,7 +126,7 @@ const projects: Project[] = [
     tags: ['Event Highlights', 'CapCut', 'Storytelling'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/Cooperative_Month2025_Final.mp4'
+    video: 'https://youtu.be/M_GCM5tk9nU'
   },
   {
     id: 7,
@@ -137,7 +137,7 @@ const projects: Project[] = [
     tags: ['Logo Animation', 'Motion Graphics'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/moving_logo.mp4'
+    video: 'https://youtu.be/bjwLlz0xFQE'
   },
   {
     id: 9,
@@ -159,7 +159,7 @@ const projects: Project[] = [
     tags: ['Inspirational Video', 'Editing'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/We _See_You_Lord.mp4'
+    video: 'https://youtu.be/LB8qzQkctOs'
   },
   {
     id: 11,
@@ -181,7 +181,7 @@ const projects: Project[] = [
     tags: ['Event Video', 'Highlights'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/Gawad_Rosas_Highlights_1.mp4'
+    video: 'https://youtu.be/LAh_hRJUtmo'
   },
   {
     id: 13,
@@ -203,7 +203,7 @@ const projects: Project[] = [
     tags: ['Motion Graphics', 'Title Animation'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/40YRS_Motion.mp4'
+    video: 'https://youtu.be/QzyL4J0rWUk'
   },
   {
     id: 15,
@@ -225,7 +225,7 @@ const projects: Project[] = [
     tags: ['Event Coverage', 'Highlights'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/SAFELAB_GA_2025.mp4'
+    video: 'https://youtube.com/shorts/L8YWab9pSHw?feature=share'
   },
   {
     id: 17,
@@ -236,7 +236,7 @@ const projects: Project[] = [
     tags: ['GIF Animation', 'Digital Ads'],
     icon: Camera,
     gradient: 'from-primary/20 to-accent/20',
-    video: '/APE_GIF.mp4'
+    video: 'https://youtube.com/shorts/jjWSzOQIG8M?feature=share'
   },
   {
     id: 18,
@@ -281,7 +281,7 @@ const projects: Project[] = [
     tags: ['AI Content', 'Animation'],
     icon: Sparkles,
     gradient: 'from-accent/20 to-secondary/20',
-    video: '/moving_rayo.mp4'
+    video: 'https://youtu.be/sUspCcTjjaM'
   },
   {
     id: 22,
