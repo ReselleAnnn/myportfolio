@@ -13,7 +13,8 @@ import { Footer } from '@/components/Footer'
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background text-foreground">
+      {/* Idagdag ang relative at overflow-x-hidden dito */}
+      <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
         <Navigation />
         <main>
           <Hero />

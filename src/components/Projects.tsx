@@ -337,13 +337,13 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-24 px-6 bg-card/30">
-      <div
-        ref={ref}
-        className={cn(
-          'max-w-6xl mx-auto opacity-0',
-          isVisible && 'animate-slide-up'
-        )}
-      >
+        <div
+          ref={ref}
+          className={cn(
+            'max-w-6xl mx-auto transition-opacity duration-700', 
+            isVisible ? 'opacity-100 animate-slide-up' : 'opacity-100 md:opacity-0'
+          )}
+        >
         {/* HEADER */}
         <div className="flex items-center gap-4 mb-8">
           <span className="text-primary font-mono text-sm">04.</span>
@@ -353,7 +353,7 @@ export function Projects() {
           <div className="flex-1 h-px bg-border" />
         </div>
 
-        <p className="text-muted-foreground mb-8 whitespace-nowrap">
+        <p className="text-muted-foreground mb-8 text-pretty">
           A showcase of my work across web development, design, automation, and AI-assisted projects.
         </p>
 

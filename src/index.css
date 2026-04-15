@@ -70,7 +70,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%; /* Mula sa pangalawang block */
 }
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
 .font-sub {
   font-family: 'Noto Sans', sans-serif;
 }

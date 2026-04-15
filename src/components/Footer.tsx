@@ -82,12 +82,21 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>
+            <p className="text-sm text-muted-foreground flex items-center justify-center gap-1.5 flex-wrap text-center max-w-[300px] sm:max-w-none">
               &copy; {currentYear} Reselle Dugayo. All rights reserved.
             </p>
-            <p className="flex items-center gap-1">
-              Built with <Heart size={14} className="text-primary" /> using React & Tailwind CSS
-            </p>
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-sm text-muted-foreground flex items-center justify-center gap-1.5 flex-wrap text-center max-w-[300px] sm:max-w-none">
+                <span>Built with</span>
+                <Heart size={14} className="text-primary fill-primary" />
+                <span>using</span>
+                <span className="font-medium text-foreground">React</span>
+                <span>+</span>
+                <span className="font-medium text-foreground">Vite</span>
+                <span>&</span>
+                <span className="font-medium text-foreground">Tailwind CSS</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -186,10 +186,10 @@ export function Contact() {
 
   const contactInfo = [
     {
-      icon: Mail,
       label: 'Email',
       value: 'reselledugayo08@gmail.com',
-      href: 'mailto:reselledugayo08@gmail.com',
+      href: 'mailto:reselledugayo08@gmail.com', // Importante ito!
+      icon: Mail // O kung ano mang icon gamit mo
     },
     {
       icon: Phone,
@@ -223,11 +223,12 @@ export function Contact() {
           <div className="flex-1 h-px bg-border" />
         </div>
 
-        <p className="text-muted-foreground mb-8 whitespace-nowrap">
-          I'm currently open to new opportunities and collaborations.
-          Whether you have a project in mind or just want to say hello,
-          I'd love to hear from you.
-        </p>
+              {/* PALITAN MO ITO */}
+      <p className="text-muted-foreground mb-8 text-pretty">
+        I'm currently open to new opportunities and collaborations.
+        Whether you have a project in mind or just want to say hello,
+        I'd love to hear from you.
+      </p>
 
         {/* Contact Info Only */}
         <div className="space-y-6 max-w-xl">
@@ -241,12 +242,12 @@ export function Contact() {
                 <p className="text-sm text-muted-foreground">{item.label}</p>
 
                 {item.href ? (
-                  <a
-                    href={item.href}
-                    className="text-foreground hover:text-primary transition-colors font-medium"
-                  >
-                    {item.value}
-                  </a>
+               <a
+                  href={item.href}
+                  className="text-foreground hover:text-primary transition-colors font-medium break-all sm:break-normal"
+                >
+                  {item.value}
+                </a>
                 ) : (
                   <p className="text-foreground font-medium">{item.value}</p>
                 )}

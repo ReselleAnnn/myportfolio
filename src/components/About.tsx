@@ -74,26 +74,36 @@ export function About() {
             </div>
           </div>
 
-          {/* Highlight Cards */}
-          <div className="grid grid-cols-2 gap-4">
-            {highlights.map((item, index) => (
-              <div
-                key={item.label}
-                className={cn(
-                  'group p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1',
-                  isVisible && 'animate-fade-in',
-                  index === 0 && 'delay-100',
-                  index === 1 && 'delay-200',
-                  index === 2 && 'delay-300',
-                  index === 3 && 'delay-400'
-                )}
-              >
-                <item.icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="font-semibold text-foreground mb-1">{item.label}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
-          </div>
+            {/* Highlight Cards - Mananatiling grid-cols-2 */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {highlights.map((item, index) => (
+                <div
+                  key={item.label}
+                  className={cn(
+                    /* Binawasan ang padding sa mobile (p-4) vs desktop (md:p-6) */
+                    'group p-4 md:p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1',
+                    isVisible && 'animate-fade-in',
+                    index === 0 && 'delay-100',
+                    index === 1 && 'delay-200',
+                    index === 2 && 'delay-300',
+                    index === 3 && 'delay-400'
+                  )}
+                >
+                  {/* Liitan ang icon sa mobile */}
+                  <item.icon className="w-6 h-6 md:w-8 md:h-8 text-primary mb-3 md:mb-4 group-hover:scale-110 transition-transform" />
+                  
+                  {/* Responsive font size: text-sm sa mobile, text-base sa desktop */}
+                  <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 leading-tight break-words">
+                    {item.label}
+                  </h3>
+                  
+                  {/* Liitan ang description sa mobile */}
+                  <p className="text-[10px] md:text-sm text-muted-foreground leading-snug">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
         </div>
       </div>
     </section>

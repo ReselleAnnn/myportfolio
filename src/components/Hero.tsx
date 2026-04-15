@@ -56,14 +56,12 @@ export function Hero() {
         </div> */}
 
         {/* Role */}
-        <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-2 font-medium">
-          <span className="text-primary">Web Developer & UI/UX Designer </span>
-          <span className="mx-2 text-border">|</span>
-          <span className="text-secondary">Workflow System Automation </span>
-          <span className="mx-2 text-border">|</span>
-          <span className="text-accent block sm:inline">
-            AI & Digital Content Creator
-          </span>
+        <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-2 font-medium flex flex-wrap justify-center gap-y-2">
+          <span className="text-primary">Web Developer & UI/UX Designer</span>
+          <span className="hidden sm:inline mx-2 text-border">|</span>
+          <span className="text-secondary">Workflow System Automation</span>
+          <span className="hidden sm:inline mx-2 text-border">|</span>
+          <span className="text-accent">AI & Digital Content Creator</span>
         </p>
 
 
