@@ -532,6 +532,7 @@ export function Projects() {
                     loop
                     muted
                     playsInline
+                    preload="metadata" // NAPAKA-IMPORTANTE NITO para sa Vercel
                   />
                 )
               )}
