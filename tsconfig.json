@@ -7,10 +7,9 @@
     "moduleResolution": "bundler",
     "noEmit": true,
     "jsx": "react-jsx",
-    "strict": false, // Pansamantala nating i-disable ang strict mode para makalusot ang build
-    "baseUrl": ".",
+    "strict": false,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"] 
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

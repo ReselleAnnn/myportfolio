@@ -11,6 +11,29 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { cn } from '@/lib/utils'
 
 /* =========================
+   HELPER FUNCTIONS
+========================= */
+const getYouTubeThumbnail = (url: string): string | null => {
+  if (!url.includes('youtube') && !url.includes('youtu.be')) return null;
+
+  let videoId = null;
+
+  if (url.includes('/shorts/')) {
+    videoId = url.split('/shorts/')[1].split('?')[0];
+  } else if (url.includes('watch?v=')) {
+    videoId = url.split('watch?v=')[1].split('&')[0];
+  } else if (url.includes('youtu.be/')) {
+    videoId = url.split('youtu.be/')[1].split('?')[0];
+  }
+
+  if (!videoId) return null;
+
+  // I-return ang Max Resolution thumbnail. 
+  // Kung wala nito ang video, fallback into medium res (mqdefault.jpg).
+  return `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
+}
+
+/* =========================
    TYPES
 ========================= */
 type Project = {
@@ -304,6 +327,9 @@ export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const { ref, isVisible } = useScrollAnimation()
 
+  // IDAGDAG ITO:
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+
   const filteredProjects =
     activeCategory === 'all'
       ? projects
@@ -350,51 +376,87 @@ export function Projects() {
         </div>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className="cursor-pointer group rounded-xl border border-border bg-card hover:border-primary transition-all duration-200 hover:-translate-y-1 active:scale-[0.98]"
-            >
-              <div
-                  className={cn(
-                    'h-48 overflow-hidden bg-gradient-to-br',
-                    project.gradient
-                  )}
-                >
-                {project.video ? (
-                    <video
-                      src={project.video}
-                      className="w-full h-full object-cover"
-                      muted
-                      autoPlay
-                      loop
-                      playsInline
-                    />
-                  ) : project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <project.icon className="w-14 h-14 text-muted-foreground group-hover:text-primary transition" />
-                  )}
-              </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProjects.map((project) => {
+              // Kuhanin ang YouTube thumbnail kung YT video ito
+              const youtubeThumbnail = project.video ? getYouTubeThumbnail(project.video) : null;
+              const isThisCardHovered = hoveredCard === project.id;
 
-              <div className="p-6">
-                <h3 className="text-lg font-semibold group-hover:text-primary">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mt-2">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          ))}
+              return (
+                <div
+                  key={project.id}
+                  onClick={() => setSelectedProject(project)}
+                  // IDAGDAG ITONG DALAWANG LINE:
+                  onMouseEnter={() => setHoveredCard(project.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className="cursor-pointer group rounded-xl border border-border bg-card hover:border-primary transition-all duration-200 hover:-translate-y-1 active:scale-[0.98]"
+                >
+                  <div
+                    className={cn(
+                      'h-48 overflow-hidden bg-gradient-to-br relative flex items-center justify-center',
+                      project.gradient
+                    )}
+                  >
+                    {project.video ? (
+                      youtubeThumbnail ? (
+                        /* CASE: YOUTUBE VIDEO */
+                        <>
+                          <img
+                            src={youtubeThumbnail}
+                            alt={project.title}
+                            className={cn(
+                              "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
+                              isThisCardHovered && 'opacity-0' 
+                            )}
+                          />
+                          {isThisCardHovered && (
+                            <iframe
+                              src={project.video
+                                .replace('youtu.be/', 'www.youtube.com/embed/')
+                                .replace('watch?v=', 'embed/')
+                                .replace('/shorts/', '/embed/') + '?autoplay=1&mute=1&controls=0&modestbranding=1'}
+                              className="absolute inset-0 w-full h-full pointer-events-none"
+                              allow="autoplay; encrypted-media"
+                            />
+                          )}
+                        </>
+                      ) : (
+                        /* CASE: LOCAL VIDEO (.mp4) */
+                        <video
+                          src={project.video}
+                          className="w-full h-full object-cover"
+                          muted
+                          autoPlay
+                          loop
+                          playsInline
+                        />
+                      )
+                    ) : project.image ? (
+                      /* CASE: STATIC IMAGE */
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <project.icon className="w-14 h-14 text-muted-foreground group-hover:text-primary transition" />
+                    )}
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold group-hover:text-primary">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mt-2">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      
 
       
      {/* MODAL */}
@@ -447,21 +509,24 @@ export function Projects() {
                 </div>
               )}
 
-             {selectedProject.video && (
+                {selectedProject.video && (
                 selectedProject.video.includes('youtube') || selectedProject.video.includes('youtu.be') ? (
                   <iframe
                     src={
                       selectedProject.video
                         .replace('youtu.be/', 'www.youtube.com/embed/')
                         .replace('watch?v=', 'embed/')
+                        .replace('/shorts/', '/embed/') // Ito ang pinaka-importante para sa Shorts!
+                        .split('?')[0] // Para malinis ang URL
                     }
-                    className="w-full h-[60vh]"
+                    className="w-full aspect-video rounded-lg" // Gumamit ng aspect-video para sa tamang scaling
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
                 ) : (
                   <video
                     src={selectedProject.video}
-                    className="w-full h-[60vh] object-cover"
+                    className="w-full max-h-[60vh] object-cover rounded-lg"
                     controls
                     autoPlay
                     loop
