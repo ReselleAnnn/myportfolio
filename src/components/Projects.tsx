@@ -126,7 +126,7 @@ const projects: Project[] = [
     tags: ['Event Highlights', 'CapCut', 'Storytelling'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/Cooperative Month 2025- Final.mp4'
+    video: '/Cooperative_Month2025_Final.mp4'
   },
   {
     id: 7,
@@ -159,7 +159,7 @@ const projects: Project[] = [
     tags: ['Inspirational Video', 'Editing'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/We See You, Lord.mp4'
+    video: '/We _See_You_Lord.mp4'
   },
   {
     id: 11,
@@ -181,7 +181,7 @@ const projects: Project[] = [
     tags: ['Event Video', 'Highlights'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/Gawad_Rosas_Highlights 1.mp4'
+    video: '/Gawad_Rosas_Highlights_1.mp4'
   },
   {
     id: 13,
@@ -203,7 +203,7 @@ const projects: Project[] = [
     tags: ['Motion Graphics', 'Title Animation'],
     icon: Video,
     gradient: 'from-accent/20 to-primary/20',
-    video: '/40YRS- Motion.mp4'
+    video: '/40YRS_Motion.mp4'
   },
   {
     id: 15,
@@ -236,7 +236,7 @@ const projects: Project[] = [
     tags: ['GIF Animation', 'Digital Ads'],
     icon: Camera,
     gradient: 'from-primary/20 to-accent/20',
-    video: '/APE-GIF.mp4'
+    video: '/APE_GIF.mp4'
   },
   {
     id: 18,
@@ -524,15 +524,19 @@ export function Projects() {
                     allowFullScreen
                   />
                 ) : (
+                  /* CASE: LOCAL VIDEO (.mp4) */
                   <video
                     src={selectedProject.video}
-                    className="w-full max-h-[60vh] object-cover rounded-lg"
+                    className="w-full max-h-[60vh] object-contain rounded-lg bg-black" // Binago natin sa object-contain para makita ang buong frame
                     controls
                     autoPlay
                     loop
                     muted
                     playsInline
-                    preload="metadata" // NAPAKA-IMPORTANTE NITO para sa Vercel
+                    preload="auto" // Binago natin sa "auto" para pilitin si Vercel na i-download ang video stream
+                    onClick={(e) => {
+                      e.stopPropagation(); // Pinaka-importante: Para hindi mag-close ang modal pag-click sa video
+                    }}
                   />
                 )
               )}
